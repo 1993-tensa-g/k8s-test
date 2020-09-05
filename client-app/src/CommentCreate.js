@@ -28,7 +28,7 @@ export default ({ postID }) => {
             className="form-control"
           ></input>
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary">Submit Comment</button>
       </form>
     </div>
   );

@@ -22,7 +22,7 @@ export default () => {
             className="form-control"
           ></input>
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary">Submit Post</button>
       </form>
     </div>
   );
