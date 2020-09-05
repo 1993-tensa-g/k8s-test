@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-deployment
+  labels:
+    app: query-api-service
+spec:
+  selector:
+    matchLabels:
+      app: query-api-service
+  template:
+    metadata:
+      labels:
+        app: query-api-service
+    spec:
+      containers:
+        - name: query-api
+          image: gauravbapat93/node-micro-query
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4004

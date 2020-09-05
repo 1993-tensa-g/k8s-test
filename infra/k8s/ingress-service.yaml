@@ -1,0 +1,62 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: app-ingress
+  annotations:
+    kubernetes.io/ingress.class: ngnix
+    # nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - secretName: tls-secret
+      hosts:
+        - posts.dev.microservices.gaurav.sh
+        - comments.dev.microservices.gaurav.sh
+        - event-bus.dev.microservices.gaurav.sh
+        - moderation.dev.microservices.gaurav.sh
+        - query.dev.microservices.gaurav.sh
+        - client.dev.microservices.gaurav.sh
+  rules:
+    - host: posts.dev.microservices.gaurav.sh
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: posts-clip-service
+              servicePort: 4000
+    - host: comments.dev.microservices.gaurav.sh
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: comments-clip-service
+              servicePort: 4001
+    - host: event-bus.dev.microservices.gaurav.sh
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: event-bus-service
+              servicePort: 4005
+    - host: moderation.dev.microservices.gaurav.sh
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: moderation-clip-service
+              servicePort: 4003
+    - host: query.dev.microservices.gaurav.sh
+      http:
+        paths:
+          - path: /
+            # path: /?(.*)/xyz   →　wild card entry for parameterized url
+            backend:
+              serviceName: query-clip-service
+              servicePort: 4004
+    - host: client.dev.microservices.gaurav.sh
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-service
+              servicePort: 3000

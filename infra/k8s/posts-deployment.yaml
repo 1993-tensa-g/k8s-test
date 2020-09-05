@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-deployment
+  labels:
+    app: posts-api-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts-api-service
+  template:
+    metadata:
+      labels:
+        app: posts-api-service
+    spec:
+      containers:
+        - name: post-api
+          image: gauravbapat93/node-micro-posts:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4000

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posts-service
+  labels:
+    name: posts-service
+spec:
+  containers:
+    - name: posts-api
+      image: node-micro-posts:0.0.1
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: 4000

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clip-service
+spec:
+  selector:
+    app: posts-api-service
+  type: ClusterIP
+  ports:
+    - name: posts-port
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

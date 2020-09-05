@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moderation-deployment
+  labels:
+    app: moderation-api
+spec:
+  selector:
+    matchLabels:
+      app: moderation-api
+  template:
+    metadata:
+      labels:
+        app: moderation-api
+    spec:
+      containers:
+        - name: moderation-api
+          image: gauravbapat93/node-micro-moderation
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4003

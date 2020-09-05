@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-deployment
+  labels:
+    app: event-bus-api-service
+spec:
+  selector:
+    matchLabels:
+      app: event-bus-api-service
+  template:
+    metadata:
+      labels:
+        app: event-bus-api-service
+    spec:
+      containers:
+        - name: event-bus-api
+          image: gauravbapat93/node-micro-event-bus
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4005
